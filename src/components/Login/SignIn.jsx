@@ -63,7 +63,7 @@ const SignIn = ({ handleResponse }) => {
       setInfoError(error?.data?.message);
     }
     if (isSuccess) {
-      message.success("Successfully Logged in");
+      message.success("Đăng nhập thành công");
       navigate("/");
     }
   }, [isError, error, isSuccess, navigate]);
@@ -107,36 +107,45 @@ const SignIn = ({ handleResponse }) => {
         </form>
       ) : (
         <form className="sign-in-form" onSubmit={handleSubmit(onSubmit)}>
-          {/* <Toast show={show} onClose={() => setShow(!show)} className="signInToast">
-                            <Toast.Header>
-                                <strong className="mr-auto">Demo credential</strong>
-                            </Toast.Header>
-                            <Toast.Body>Use this account to sign in as a doctor <br />
-                                <hr />
-                                <div className='bg-dark text-white p-2 px-3 rounded'>
-                                    email : doctor@gmail.com <br />
-                                    password : 123456 <br />
-                                </div>
-                                <hr />
-                                <div className='bg-primary p-2 rounded text-white'>
-                                    Please do not abuse the facility
-                                </div>
-                            </Toast.Body>
-                        </Toast> */}
-          <h2 className="title">Sign in</h2>
+          {/* <Toast
+            show={show}
+            onClose={() => setShow(!show)}
+            className="signInToast"
+          >
+            <Toast.Header>
+              <strong className="mr-auto">Demo credential</strong>
+            </Toast.Header>
+            <Toast.Body>
+              Use this account to sign in as a doctor <br />
+              <hr />
+              <div className="bg-dark text-white p-2 px-3 rounded">
+                Email : buivuongdhmo@gmail.com <br />
+                Password : admin123 <br />
+              </div>
+              <hr />
+              Use this account to sign in as a patient <br />
+              <hr />
+              <div className="bg-dark text-white p-2 px-3 rounded">
+                Email : patient1@gmail.com <br />
+                Password : patient <br />
+              </div>
+              <div className="bg-primary p-2 rounded text-white">
+                Please do not abuse the facility
+              </div>
+            </Toast.Body>
+          </Toast> */}
+          <h2 className="title">Đăng nhập</h2>
           <div className="input-field">
             <span className="fIcon">
               <FaEnvelope />
             </span>
             <input
               {...register("email", { required: true })}
-              placeholder="Enter Your Email"
+              placeholder="Nhập email của bạn"
               type="email"
             />
           </div>
-          {errors.email && (
-            <span className="text-danger">This field is required</span>
-          )}
+          {errors.email && <span className="text-danger">Bắt buộc nhập</span>}
           <div className="input-field">
             <span className="fIcon">
               <FaLock />
@@ -144,25 +153,25 @@ const SignIn = ({ handleResponse }) => {
             <input
               {...register("password", { required: true })}
               type="password"
-              placeholder="Enter Your Password"
+              placeholder="Nhập mật khẩu của bạn"
             />
           </div>
           {errors.password && (
-            <span className="text-danger">This field is required</span>
+            <span className="text-danger">Bắt buộc nhập</span>
           )}
           {infoError && <p className="text-danger">{infoError}</p>}
-          <div
+          {/* <div
             onClick={handleShowForgotPassword}
             className="text-bold"
             style={{ cursor: "pointer", color: "#4C25F5" }}
           >
             Forgot Password ?
-          </div>
+          </div> */}
           <button className="iBtn" type="submit" value="sign In">
             {isLoading ? (
               <Spinner animation="border" variant="info" />
             ) : (
-              "Sign In"
+              "Đăng nhập"
             )}
           </button>
           {/* <p className="social-text">Or Sign in with social platforms</p>

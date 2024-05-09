@@ -89,7 +89,7 @@ const PatientFavouriteDoctor = () => {
                       (27)
                     </span>
                   </div>
-                  <ul className="available-info">
+                  {/* <ul className="available-info">
                     <li>
                       <FaLocationArrow className="icon" /> Georgia, USA
                     </li>
@@ -99,7 +99,7 @@ const PatientFavouriteDoctor = () => {
                     <li>
                       <FaDollarSign className="icon" /> $100 - $400
                     </li>
-                  </ul>
+                  </ul> */}
                   <div className="d-flex justify-content-between mb-3 mt-2">
                     <Link
                       to={"/doctors/profile"}

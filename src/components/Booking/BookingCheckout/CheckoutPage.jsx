@@ -2,6 +2,7 @@ import moment from "moment";
 import img from "../../../images/avatar.jpg";
 import { Link } from "react-router-dom";
 import "./BookingCheckout.css";
+import useAuthCheck from "../../../redux/hooks/useAuthCheck";
 
 const CheckoutPage = ({
   handleChange,
@@ -20,6 +21,10 @@ const CheckoutPage = ({
     cvv,
     paymentType,
     paymentMethod,
+    address,
+    description,
+    reasonForVisit,
+    phone,
   } = selectValue;
   const handleCheck = () => {
     setIsChecked(!isCheck);
@@ -28,11 +33,13 @@ const CheckoutPage = ({
   let price = data?.price ? data.price : 60;
   let doctorImg = data?.img ? data?.img : img;
 
+  const { data: loggedInUser, role } = useAuthCheck();
+
   const vat = (15 / 100) * Number(price);
   return (
     <div className="container mt-5">
       <div className="row">
-        <div className="col-md-7">
+        {/* <div className="col-md-7">
           <div className="rounded p-3" style={{ background: "#f8f9fa" }}>
             <div className="row">
               <div className="col-md-6 mb-2">
@@ -177,17 +184,14 @@ const CheckoutPage = ({
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        <div className="col-md-5 col-sm-12">
+        <div className="col-md-6">
           <div className="rounded p-3" style={{ background: "#f8f9fa" }}>
             {data && (
-              <Link
-                to={`/doctors/profile/${data?.id}`}
-                className="booking-doc-img d-flex justify-content-center mb-2"
-              >
-                <img src={doctorImg} alt="" />
-              </Link>
+              <div className="booking-doc-img d-flex justify-content-center mb-2">
+                <img src={loggedInUser?.img ? loggedInUser?.img : img} alt="" />
+              </div>
             )}
             {data && (
               <div className="doc-title-info mt-3 mb-3">
@@ -198,11 +202,14 @@ const CheckoutPage = ({
                     fontWeight: 700,
                   }}
                 >
-                  Dr. {data?.firstName + " " + data?.lastName}
+                  Bệnh nhân{" "}
+                  {loggedInUser?.firstName + " " + loggedInUser?.lastName}
                 </h5>
                 <div className="text-center">
-                  <p className="form-text mb-0">{data?.designation}</p>
-                  <p className="form-text mb-0">{data?.clinicAddress}</p>
+                  <p className="form-text mb-0">
+                    {loggedInUser?.gender === "male" ? "Nam" : "Nữ"}
+                  </p>
+                  {loggedInUser?.email}
                 </div>
               </div>
             )}
@@ -210,13 +217,62 @@ const CheckoutPage = ({
             <div className="booking-item-wrap">
               <ul className="booking-date">
                 <li>
-                  Date <span>{moment(selectedDate).format("LL")}</span>
+                  Ngày hẹn{" "}
+                  <span>{moment(selectedDate).format("DD/MM/YYYY")}</span>
                 </li>
                 <li>
-                  Time <span>{selectTime}</span>
+                  Giờ hẹn <span>{selectTime}</span>
+                </li>
+                <li>
+                  Địa chỉ <span>{address}</span>
                 </li>
               </ul>
-              <ul className="booking-fee">
+            </div>
+          </div>
+        </div>
+
+        <div className="col-md-6 col-sm-12">
+          <div className="rounded p-3" style={{ background: "#f8f9fa" }}>
+            {data && (
+              <div className="booking-doc-img d-flex justify-content-center mb-2">
+                <img src={doctorImg} alt="" />
+              </div>
+            )}
+            {data && (
+              <div className="doc-title-info mt-3 mb-3">
+                <h5
+                  className="mt-3 text-center"
+                  style={{
+                    fontSize: "22px",
+                    fontWeight: 700,
+                  }}
+                >
+                  Bác sĩ {data?.firstName + " " + data?.lastName}
+                </h5>
+                <div className="text-center">
+                  <p className="form-text mb-0">
+                    {data?.gender === "male" ? "Nam" : "Nữ"}
+                  </p>
+                  {data?.email}
+                </div>
+              </div>
+            )}
+
+            <div className="booking-item-wrap">
+              <ul className="booking-date">
+                <li>
+                  Chuyên khoa
+                  <span>{data?.services}</span>
+                </li>
+                <li>
+                  Ngày hẹn{" "}
+                  <span>{moment(selectedDate).format("DD/MM/YYYY")}</span>
+                </li>
+                <li>
+                  Giờ hẹn <span>{selectTime}</span>
+                </li>
+              </ul>
+              {/* <ul className="booking-fee">
                 <li>
                   Consulting Fee <span>${price}</span>
                 </li>
@@ -226,16 +282,16 @@ const CheckoutPage = ({
                 <li>
                   Vat (Including 15%) <span>$ {vat}</span>
                 </li>
-              </ul>
+              </ul> */}
 
-              <ul className="booking-total">
+              {/* <ul className="booking-total">
                 <li className="d-flex justify-content-between">
                   <span className="fw-bold">Total</span>
                   <span className="total-cost" style={{ color: "#4cbb16" }}>
                     ${Number(price) + 10 + vat}
                   </span>
                 </li>
-              </ul>
+              </ul> */}
             </div>
           </div>
         </div>

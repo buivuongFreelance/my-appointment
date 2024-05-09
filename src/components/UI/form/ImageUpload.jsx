@@ -8,21 +8,26 @@ const ImageUpload = ({ setSelectedImage, setFile }) => {
       const reader = new FileReader();
       const file = files[0];
       setFile(file);
-      reader.onload = () =>{
+      reader.onload = () => {
         setSelectedImage(reader.result);
-      }
+      };
       reader.readAsDataURL(file);
     }
-  }
+  };
 
   return (
     <>
       <div className="change-photo-btn">
-        <span className="d-flex align-items-center justify-content-center gap-2"><FaCloudUploadAlt className="icon" style={{ fontSize: '2rem' }} /> Upload Photo</span>
+        <span className="d-flex align-items-center justify-content-center gap-2">
+          <FaCloudUploadAlt className="icon" style={{ fontSize: "2rem" }} /> Úp
+          ảnh avatar
+        </span>
         <input type="file" className="upload" onChange={handleFileChange} />
       </div>
       <div>
-        <small className="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
+        <small className="form-text text-muted">
+          Cho phép JPG, GIF or PNG. Dung lượng tối đa 2MB
+        </small>
       </div>
     </>
   );

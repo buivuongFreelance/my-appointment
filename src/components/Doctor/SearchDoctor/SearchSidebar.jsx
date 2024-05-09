@@ -15,17 +15,17 @@ const SearchSidebar = ({
   const handleDateChange = (_date, _dateString) => {};
   const options = [
     {
-      label: "Male",
+      label: "Nam",
       value: "male",
     },
     {
-      label: "Female",
+      label: "Nữ",
       value: "female",
     },
-    {
-      label: "Shemale",
-      value: "shemale",
-    },
+    // {
+    //   label: "Shemale",
+    //   value: "shemale",
+    // },
   ];
   const onSelectGender = (e) => setSorByGender(e.target.value);
 
@@ -45,40 +45,40 @@ const SearchSidebar = ({
     <div className="col-md-12 col-lg-4 col-xl-3">
       <div className="p-3 rounded" style={{ background: "#f3f3f3" }}>
         <h5 className="text-center mb-3" style={{ color: "#05335c" }}>
-          Doctor Filter
+          Lọc bác sĩ
         </h5>
         <div className="mb-3">
           <Search
-            placeholder="Search..."
+            placeholder="Tìm kiếm..."
             onSearch={onSearch}
             enterButton
             allowClear
           />
         </div>
 
-        <div className="mb-3">
+        {/* <div className="mb-3">
           <h6 style={{ color: "#05335c" }}>Date Range</h6>
           <DatePicker
             style={{ width: "100%" }}
             format="YYYY-MM-DD HH:mm:ss"
             onChange={handleDateChange}
           />
-        </div>
+        </div> */}
 
         <div className="mb-3">
-          <h6 style={{ color: "#05335c" }}>Gender</h6>
+          <h6 style={{ color: "#05335c" }}>Giới tính</h6>
           <div className="d-flex flex-column">
             <Radio.Group options={options} onChange={onSelectGender} />
           </div>
         </div>
 
-        <div className="mb-3">
+        {/* <div className="mb-3">
           <h6 style={{ color: "#05335c" }}>Price Range</h6>
           <Slider range defaultValue={[75, 150]} onChange={onRangeChange} />
-        </div>
+        </div> */}
 
         <div className="mb-3">
-          <h6 style={{ color: "#05335c" }}>Select Specialist</h6>
+          <h6 style={{ color: "#05335c" }}>Chọn chuyên khoa</h6>
           <div className="d-flex flex-column">
             <Radio.Group
               options={doctorSpecialistOptions}
@@ -95,7 +95,7 @@ const SearchSidebar = ({
           icon={<FaSearch />}
           size="sm"
         >
-          Search
+          Tìm kiếm
         </Button>
         {Object.keys(query).length > 4 && (
           <Button
@@ -107,7 +107,7 @@ const SearchSidebar = ({
             icon={<FaRedoAlt />}
             size="sm"
           >
-            Reset
+            Cài lại
           </Button>
         )}
       </div>
